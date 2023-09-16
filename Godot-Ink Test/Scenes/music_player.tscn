@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxywm5e0aoysj"]
+
+[ext_resource type="AudioStream" uid="uid://0p2ka1jbxxey" path="res://Audio/Punch Deck - Tempest.wav" id="1_jcxuh"]
+[ext_resource type="Script" path="res://Scenes/MusicPlayer.cs" id="2_g4d86"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" node_paths=PackedStringArray("writer")]
+stream = ExtResource("1_jcxuh")
+script = ExtResource("2_g4d86")
+audioClips = [ExtResource("1_jcxuh")]
+writer = NodePath("")

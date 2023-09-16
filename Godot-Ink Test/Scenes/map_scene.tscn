@@ -1,0 +1,399 @@
+[gd_scene load_steps=31 format=3 uid="uid://b4grhpyiow3o7"]
+
+[ext_resource type="Texture2D" uid="uid://cg4nfn4slpb5n" path="res://Graphics/ClayMinigame/clay_background.PNG" id="1_sq082"]
+[ext_resource type="StyleBox" uid="uid://be3kxorldtsgh" path="res://Resources/map_select_box.tres" id="3_meb3d"]
+[ext_resource type="Theme" uid="uid://d3bs8n7o6xm53" path="res://Resources/font_theme.tres" id="3_w8kch"]
+[ext_resource type="Script" path="res://Scenes/CustomInkButtonController.cs" id="4_8eacg"]
+[ext_resource type="Resource" uid="uid://cjl64b4x31e7c" path="res://InkFiles/quantum_clay_minigame.ink" id="5_g4m5u"]
+[ext_resource type="Script" path="res://Scenes/InkPortrait.cs" id="7_gc2r8"]
+[ext_resource type="Texture2D" uid="uid://cof1k0i1y367y" path="res://Graphics/ClayMinigame/scene_city post apo.png" id="8_g27n4"]
+[ext_resource type="Texture2D" uid="uid://v7mnp6dnvsv2" path="res://Graphics/ClayMinigame/scene_city pre apo.png" id="9_ik7ls"]
+[ext_resource type="Texture2D" uid="uid://spiwsb2dnmdb" path="res://Graphics/ClayMinigame/blackbox.png" id="10_h2k72"]
+[ext_resource type="Texture2D" uid="uid://dtg6qa5qna5o4" path="res://Graphics/ClayMinigame/new ui_inventory_open.png" id="11_lbs64"]
+[ext_resource type="Texture2D" uid="uid://duocoq5p4isam" path="res://Graphics/ClayMinigame/portrait_clayworker_profile.png" id="12_uy45w"]
+[ext_resource type="Texture2D" uid="uid://c8vnw65bv1vth" path="res://Graphics/ClayMinigame/portrait_storyteller_profile.png" id="13_n2min"]
+[ext_resource type="StyleBox" uid="uid://b6j1u24xg5xdu" path="res://Resources/button_box.tres" id="15_fkl7j"]
+[ext_resource type="Script" path="res://Scenes/InkListener.cs" id="16_ehid6"]
+[ext_resource type="PackedScene" uid="uid://cxywm5e0aoysj" path="res://Scenes/music_player.tscn" id="17_2gick"]
+[ext_resource type="AudioStream" uid="uid://dhi06fcjvqpkx" path="res://Audio/Clay theme 16.I.2021.wav" id="18_aofn5"]
+
+[sub_resource type="Animation" id="Animation_an22t"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6f23t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3piqk"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4m2ah"]
+_data = {
+"RESET": SubResource("Animation_6f23t"),
+"fade_in": SubResource("Animation_an22t"),
+"fade_out": SubResource("Animation_3piqk")
+}
+
+[sub_resource type="Animation" id="Animation_1yqhk"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_83edc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cqyro"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_db3ct"]
+_data = {
+"RESET": SubResource("Animation_83edc"),
+"fade_in": SubResource("Animation_1yqhk"),
+"fade_out": SubResource("Animation_cqyro")
+}
+
+[sub_resource type="Animation" id="Animation_niaxx"]
+resource_name = "fade_in_option"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o2f2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wupbk"]
+_data = {
+"RESET": SubResource("Animation_o2f2v"),
+"fade_in_option": SubResource("Animation_niaxx")
+}
+
+[sub_resource type="Animation" id="Animation_nfsvl"]
+resource_name = "fade_in_text"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p4okc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r1nrs"]
+_data = {
+"RESET": SubResource("Animation_p4okc"),
+"fade_in_text": SubResource("Animation_nfsvl")
+}
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Ink" type="CanvasLayer" parent="." node_paths=PackedStringArray("taggedButtons", "containerText", "containerButtons", "textLabel", "optionButton")]
+script = ExtResource("4_8eacg")
+taggedButtons = [NodePath("Panel/TextureRect/TaggedButton"), NodePath("Panel/TextureRect/TaggedButton2")]
+clearText = false
+containerText = NodePath("Panel/TextBoxBackground/TextBox/ScrollContainer/VBoxContainer_Text")
+containerButtons = NodePath("Panel/VBoxContainer_Buttons")
+textLabel = NodePath("OptionRichText")
+optionButton = NodePath("OptionButton")
+m_inkStory = ExtResource("5_g4m5u")
+
+[node name="Panel" type="Panel" parent="Ink"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="TextureRect" parent="Ink/Panel" node_paths=PackedStringArray("writer", "player")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.46985
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_h2k72")
+expand_mode = 3
+script = ExtResource("7_gc2r8")
+functionName = "BACKGROUND"
+textures = [ExtResource("8_g27n4"), ExtResource("9_ik7ls"), ExtResource("10_h2k72")]
+writer = NodePath("../..")
+player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ink/Panel/Background"]
+libraries = {
+"": SubResource("AnimationLibrary_4m2ah")
+}
+
+[node name="TextureRect" type="TextureRect" parent="Ink/Panel"]
+offset_right = 1161.0
+offset_bottom = 652.0
+texture = ExtResource("1_sq082")
+expand_mode = 1
+
+[node name="TaggedButton" type="Button" parent="Ink/Panel/TextureRect"]
+offset_left = 643.0
+offset_top = 309.0
+offset_right = 834.0
+offset_bottom = 405.0
+theme = ExtResource("3_w8kch")
+theme_override_styles/normal = ExtResource("3_meb3d")
+text = "ruin_1"
+
+[node name="TaggedButton2" type="Button" parent="Ink/Panel/TextureRect"]
+offset_left = 139.0
+offset_top = 248.0
+offset_right = 330.0
+offset_bottom = 344.0
+theme = ExtResource("3_w8kch")
+theme_override_styles/normal = ExtResource("3_meb3d")
+text = "ruin_2"
+
+[node name="TextBoxBackground" type="TextureRect" parent="Ink/Panel"]
+self_modulate = Color(1, 1, 1, 0.792157)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.711806
+anchor_top = 0.00617284
+anchor_right = 1.00174
+anchor_bottom = 0.675926
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_h2k72")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextBox" type="TextureRect" parent="Ink/Panel/TextBoxBackground"]
+clip_children = 2
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_lbs64")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ink/Panel/TextBoxBackground/TextBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0658683
+anchor_top = 0.046083
+anchor_right = 0.928144
+anchor_bottom = 0.958525
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer_Text" type="VBoxContainer" parent="Ink/Panel/TextBoxBackground/TextBox/ScrollContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(280, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer_Buttons" type="VBoxContainer" parent="Ink/Panel"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.697917
+anchor_top = 0.694444
+anchor_right = 0.983507
+anchor_bottom = 0.992284
+offset_left = -7.0
+offset_top = -4.0
+offset_right = -7.0
+offset_bottom = -4.0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Portrait" type="TextureRect" parent="Ink/Panel" node_paths=PackedStringArray("writer", "player")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499132
+anchor_top = 0.64429
+anchor_right = 0.680556
+anchor_bottom = 0.993827
+offset_top = 17.5
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("12_uy45w")
+expand_mode = 3
+script = ExtResource("7_gc2r8")
+textures = [ExtResource("12_uy45w"), ExtResource("13_n2min")]
+writer = NodePath("../..")
+player = NodePath("AnimationPlayer")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ink/Panel/Portrait"]
+libraries = {
+"": SubResource("AnimationLibrary_db3ct")
+}
+
+[node name="OptionButton" type="Button" parent="Ink"]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(345, 0)
+offset_left = 791.0
+offset_top = 452.0
+offset_right = 1136.0
+offset_bottom = 492.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("3_w8kch")
+theme_override_styles/normal = ExtResource("15_fkl7j")
+theme_override_styles/hover = ExtResource("15_fkl7j")
+theme_override_styles/pressed = ExtResource("15_fkl7j")
+text = "Text text text text"
+alignment = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ink/OptionButton"]
+autoplay = "fade_in_option"
+libraries = {
+"": SubResource("AnimationLibrary_wupbk")
+}
+
+[node name="OptionRichText" type="RichTextLabel" parent="Ink"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 23.0
+theme = ExtResource("3_w8kch")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "fdgfdgdgdgfdgfdgfd"
+fit_content = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ink/OptionRichText"]
+libraries = {
+"": SubResource("AnimationLibrary_r1nrs")
+}
+
+[node name="InkListener" type="Node" parent="Ink" node_paths=PackedStringArray("m_listenTarget")]
+script = ExtResource("16_ehid6")
+m_listenTarget = NodePath("..")
+targetFunction = "PLAYER"
+targetArguments = ["test", "bla2"]
+
+[node name="MusicPlayer" parent="Ink" node_paths=PackedStringArray("writer") instance=ExtResource("17_2gick")]
+stream = ExtResource("18_aofn5")
+audioClips = [ExtResource("18_aofn5")]
+writer = NodePath("..")

@@ -1,0 +1,16 @@
+[remap]
+
+importer="ink"
+type="Resource"
+uid="uid://cjl64b4x31e7c"
+path="res://.godot/imported/quantum_clay_minigame.ink-46117cf1969b751da3a2c0ab5b47e231.res"
+
+[deps]
+
+source_file="res://InkFiles/quantum_clay_minigame.ink"
+dest_files=["res://.godot/imported/quantum_clay_minigame.ink-46117cf1969b751da3a2c0ab5b47e231.res"]
+
+[params]
+
+is_main_file=true
+compress=true

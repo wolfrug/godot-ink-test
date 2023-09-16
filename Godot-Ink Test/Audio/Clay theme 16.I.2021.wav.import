@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dhi06fcjvqpkx"
+path="res://.godot/imported/Clay theme 16.I.2021.wav-6c2ea4ac5ffcfd8db1d036432cb5c3ae.sample"
+
+[deps]
+
+source_file="res://Audio/Clay theme 16.I.2021.wav"
+dest_files=["res://.godot/imported/Clay theme 16.I.2021.wav-6c2ea4ac5ffcfd8db1d036432cb5c3ae.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

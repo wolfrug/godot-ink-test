@@ -1,26 +1,207 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh2vam1o7tc2g"]
+[gd_scene load_steps=30 format=3 uid="uid://dh2vam1o7tc2g"]
 
-[ext_resource type="Texture2D" uid="uid://d1nw2uy4g87jo" path="res://Graphics/DreamShaper_v7_a_background_scene_in_a_visual_novel_that_is_se_0.jpg" id="2_t3hud"]
-[ext_resource type="Texture2D" uid="uid://c8hjpcqyxqreq" path="res://Graphics/DreamShaper_v7_a_background_to_a_visual_novel_depicting_a_rain_0.jpg" id="3_jgvl4"]
+[ext_resource type="Resource" uid="uid://cjl64b4x31e7c" path="res://InkFiles/quantum_clay_minigame.ink" id="2_axqtc"]
+[ext_resource type="Texture2D" uid="uid://dke71nqsiros0" path="res://Graphics/ClayMinigame/scene_camp.png" id="3_5ow0x"]
+[ext_resource type="Texture2D" uid="uid://spiwsb2dnmdb" path="res://Graphics/ClayMinigame/blackbox.png" id="3_ctehx"]
 [ext_resource type="Script" path="res://Scenes/InkWriter.cs" id="4_n4yyq"]
-[ext_resource type="Texture2D" uid="uid://cu1i18hg1vgx" path="res://Graphics/Panel_Dialogue.png" id="4_vy2d5"]
-[ext_resource type="Resource" uid="uid://d0a2xp8tpekr2" path="res://InkFiles/testfile.ink" id="5_xxcv2"]
+[ext_resource type="Texture2D" uid="uid://cof1k0i1y367y" path="res://Graphics/ClayMinigame/scene_city post apo.png" id="5_6p847"]
 [ext_resource type="Script" path="res://Scenes/InkPortrait.cs" id="6_0a6ld"]
-[ext_resource type="Texture2D" uid="uid://ibln2ionguyl" path="res://Graphics/character1.png" id="6_4qd1i"]
+[ext_resource type="Texture2D" uid="uid://v7mnp6dnvsv2" path="res://Graphics/ClayMinigame/scene_city pre apo.png" id="6_kthfm"]
 [ext_resource type="Theme" uid="uid://d3bs8n7o6xm53" path="res://Resources/font_theme.tres" id="6_s3fxj"]
-[ext_resource type="Texture2D" uid="uid://cb51vgmqde1av" path="res://Graphics/character2.png" id="7_lmau6"]
 [ext_resource type="StyleBox" uid="uid://b6j1u24xg5xdu" path="res://Resources/button_box.tres" id="7_mcrwg"]
+[ext_resource type="Texture2D" uid="uid://dtg6qa5qna5o4" path="res://Graphics/ClayMinigame/new ui_inventory_open.png" id="7_omghx"]
+[ext_resource type="Texture2D" uid="uid://duocoq5p4isam" path="res://Graphics/ClayMinigame/portrait_clayworker_profile.png" id="8_b5i28"]
+[ext_resource type="Texture2D" uid="uid://c8vnw65bv1vth" path="res://Graphics/ClayMinigame/portrait_storyteller_profile.png" id="9_r7alg"]
 [ext_resource type="Script" path="res://Scenes/InkListener.cs" id="10_q5x7v"]
-[ext_resource type="AudioStream" uid="uid://0p2ka1jbxxey" path="res://Audio/Punch Deck - Tempest.wav" id="12_wmmig"]
-[ext_resource type="Script" path="res://Scenes/MusicPlayer.cs" id="13_rfdfw"]
+[ext_resource type="PackedScene" uid="uid://cxywm5e0aoysj" path="res://Scenes/music_player.tscn" id="13_0y36n"]
+[ext_resource type="AudioStream" uid="uid://dhi06fcjvqpkx" path="res://Audio/Clay theme 16.I.2021.wav" id="14_kbbku"]
+
+[sub_resource type="Animation" id="Animation_an22t"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6f23t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3piqk"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4m2ah"]
+_data = {
+"RESET": SubResource("Animation_6f23t"),
+"fade_in": SubResource("Animation_an22t"),
+"fade_out": SubResource("Animation_3piqk")
+}
+
+[sub_resource type="Animation" id="Animation_1yqhk"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_83edc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cqyro"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_db3ct"]
+_data = {
+"RESET": SubResource("Animation_83edc"),
+"fade_in": SubResource("Animation_1yqhk"),
+"fade_out": SubResource("Animation_cqyro")
+}
+
+[sub_resource type="Animation" id="Animation_niaxx"]
+resource_name = "fade_in_option"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o2f2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wupbk"]
+_data = {
+"RESET": SubResource("Animation_o2f2v"),
+"fade_in_option": SubResource("Animation_niaxx")
+}
+
+[sub_resource type="Animation" id="Animation_nfsvl"]
+resource_name = "fade_in_text"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p4okc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r1nrs"]
+_data = {
+"RESET": SubResource("Animation_p4okc"),
+"fade_in_text": SubResource("Animation_nfsvl")
+}
 
 [node name="Ink" type="CanvasLayer" node_paths=PackedStringArray("containerText", "containerButtons", "textLabel", "optionButton")]
 script = ExtResource("4_n4yyq")
-containerText = NodePath("Panel/VBoxContainer_Text")
+clearText = false
+containerText = NodePath("Panel/TextBoxBackground/TextBox/ScrollContainer/VBoxContainer_Text")
 containerButtons = NodePath("Panel/VBoxContainer_Buttons")
 textLabel = NodePath("OptionRichText")
 optionButton = NodePath("OptionButton")
-m_inkStory = ExtResource("5_xxcv2")
+m_inkStory = ExtResource("2_axqtc")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -31,7 +212,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Background" type="TextureRect" parent="Panel" node_paths=PackedStringArray("writer")]
+[node name="Background" type="TextureRect" parent="Panel" node_paths=PackedStringArray("writer", "player")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,49 +220,75 @@ anchor_bottom = 1.0
 offset_right = 3.46985
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_jgvl4")
+texture = ExtResource("3_5ow0x")
 expand_mode = 3
-stretch_mode = 5
 script = ExtResource("6_0a6ld")
 functionName = "BACKGROUND"
-textures = [ExtResource("2_t3hud"), ExtResource("3_jgvl4")]
+textures = [ExtResource("5_6p847"), ExtResource("6_kthfm")]
 writer = NodePath("../..")
+player = NodePath("AnimationPlayer")
 
-[node name="TextBox" type="TextureRect" parent="Panel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Background"]
+libraries = {
+"": SubResource("AnimationLibrary_4m2ah")
+}
+
+[node name="TextBoxBackground" type="TextureRect" parent="Panel"]
+self_modulate = Color(1, 1, 1, 0.792157)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.00347222
-anchor_top = 0.79321
-anchor_right = 0.471354
-anchor_bottom = 0.981481
-offset_top = -3.05176e-05
-texture = ExtResource("4_vy2d5")
+anchor_left = 0.711806
+anchor_top = 0.00617284
+anchor_right = 1.00174
+anchor_bottom = 0.675926
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ctehx")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer_Text" type="VBoxContainer" parent="Panel"]
-custom_minimum_size = Vector2(500, 100)
+[node name="TextBox" type="TextureRect" parent="Panel/TextBoxBackground"]
+clip_children = 2
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_omghx")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/TextBoxBackground/TextBox"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0208333
-anchor_top = 0.822531
-anchor_right = 0.466146
-anchor_bottom = 0.976852
-offset_left = -7.0
-offset_top = -4.0
-offset_right = -7.0
-offset_bottom = -4.0
-grow_vertical = 0
+anchor_left = 0.0658683
+anchor_top = 0.046083
+anchor_right = 0.928144
+anchor_bottom = 0.958525
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer_Text" type="VBoxContainer" parent="Panel/TextBoxBackground/TextBox/ScrollContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(280, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer_Buttons" type="VBoxContainer" parent="Panel"]
-custom_minimum_size = Vector2(500, 100)
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.262153
-anchor_top = 0.453704
-anchor_right = 0.696181
-anchor_bottom = 0.734568
+anchor_left = 0.697917
+anchor_top = 0.694444
+anchor_right = 0.983507
+anchor_bottom = 0.992284
 offset_left = -7.0
 offset_top = -4.0
 offset_right = -7.0
@@ -89,37 +296,51 @@ offset_bottom = -4.0
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
 
-[node name="Portrait" type="TextureRect" parent="Panel" node_paths=PackedStringArray("writer")]
+[node name="Portrait" type="TextureRect" parent="Panel" node_paths=PackedStringArray("writer", "player")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.726563
-anchor_top = 0.368056
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.499132
+anchor_top = 0.64429
+anchor_right = 0.680556
+anchor_bottom = 0.993827
 offset_top = 17.5
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("6_4qd1i")
-expand_mode = 5
+texture = ExtResource("8_b5i28")
+expand_mode = 3
 script = ExtResource("6_0a6ld")
-textures = [ExtResource("6_4qd1i"), ExtResource("7_lmau6")]
+textures = [ExtResource("8_b5i28"), ExtResource("9_r7alg")]
 writer = NodePath("../..")
+player = NodePath("AnimationPlayer")
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panel/Portrait"]
+libraries = {
+"": SubResource("AnimationLibrary_db3ct")
+}
 
 [node name="OptionButton" type="Button" parent="."]
 visible = false
 clip_contents = true
-custom_minimum_size = Vector2(500, 0)
-offset_right = 703.0
-offset_bottom = 39.0
+custom_minimum_size = Vector2(345, 0)
+offset_left = 791.0
+offset_top = 452.0
+offset_right = 1136.0
+offset_bottom = 492.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("6_s3fxj")
 theme_override_styles/normal = ExtResource("7_mcrwg")
 theme_override_styles/hover = ExtResource("7_mcrwg")
 theme_override_styles/pressed = ExtResource("7_mcrwg")
-text = "Text text text text Text text text text v gfdgdfg dg df gdfdfgddfgdfgdfg"
+text = "Text text text text"
 alignment = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OptionButton"]
+autoplay = "fade_in_option"
+libraries = {
+"": SubResource("AnimationLibrary_wupbk")
+}
 
 [node name="OptionRichText" type="RichTextLabel" parent="."]
 visible = false
@@ -130,14 +351,18 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 text = "fdgfdgdgdgfdgfdgfd"
 fit_content = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OptionRichText"]
+libraries = {
+"": SubResource("AnimationLibrary_r1nrs")
+}
+
 [node name="InkListener" type="Node" parent="." node_paths=PackedStringArray("m_listenTarget")]
 script = ExtResource("10_q5x7v")
 m_listenTarget = NodePath("..")
 targetFunction = "PLAYER"
 targetArguments = ["test", "bla2"]
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("writer")]
-stream = ExtResource("12_wmmig")
-script = ExtResource("13_rfdfw")
-audioClips = [ExtResource("12_wmmig")]
+[node name="MusicPlayer" parent="." node_paths=PackedStringArray("writer") instance=ExtResource("13_0y36n")]
+stream = ExtResource("14_kbbku")
+audioClips = [ExtResource("14_kbbku")]
 writer = NodePath("..")

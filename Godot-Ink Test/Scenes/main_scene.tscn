@@ -1,7 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://dc2an525dnrke"]
+[gd_scene load_steps=12 format=3 uid="uid://dc2an525dnrke"]
 
 [ext_resource type="PackedScene" uid="uid://dh2vam1o7tc2g" path="res://Scenes/inkwriter_window.tscn" id="1_7yr67"]
+[ext_resource type="Texture2D" uid="uid://dc6o0pr6cn7t5" path="res://Graphics/ClayMinigame/ui_item_residua.png" id="1_je8qy"]
 [ext_resource type="Script" path="res://Scenes/QuitFunction.cs" id="2_1ktgh"]
+[ext_resource type="PackedScene" uid="uid://cxywm5e0aoysj" path="res://Scenes/music_player.tscn" id="3_2yr45"]
+[ext_resource type="AudioStream" uid="uid://dppqah5bovoco" path="res://Audio/mixkit-night-forest-with-insects-2414.wav" id="4_e3y37"]
+[ext_resource type="AudioStream" uid="uid://cppgock66kbnf" path="res://Audio/mixkit-campfire-night-wind-1736.wav" id="5_5hjpw"]
+[ext_resource type="Script" path="res://Scenes/AnimationPlayer.cs" id="6_ygp1y"]
+
+[sub_resource type="Animation" id="Animation_rtbg5"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pjccq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xh15n"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4l5fb"]
+_data = {
+"RESET": SubResource("Animation_pjccq"),
+"fade_in": SubResource("Animation_rtbg5"),
+"fade_out": SubResource("Animation_xh15n")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -18,5 +75,43 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("2_1ktgh")
 m_listenTarget = NodePath("../Ink")
 targetFunction = "QUIT"
+
+[node name="AmbiencePlayer" parent="." node_paths=PackedStringArray("writer") instance=ExtResource("3_2yr45")]
+stream = ExtResource("4_e3y37")
+autoplay = true
+functionName = "PLAY_AMBIENCE"
+audioClips = [ExtResource("5_5hjpw"), ExtResource("4_e3y37")]
+writer = NodePath("../Ink")
+
+[node name="AmbiencePlayer2" parent="." node_paths=PackedStringArray("writer") instance=ExtResource("3_2yr45")]
+stream = ExtResource("5_5hjpw")
+autoplay = true
+functionName = "PLAY_AMBIENCE"
+audioClips = [ExtResource("5_5hjpw"), ExtResource("4_e3y37")]
+writer = NodePath("../Ink")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer" node_paths=PackedStringArray("writer")]
+autoplay = "fade_in"
+libraries = {
+"": SubResource("AnimationLibrary_4l5fb")
+}
+script = ExtResource("6_ygp1y")
+writer = NodePath("../../Ink")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/AnimationPlayer"]
+anchors_preset = -1
+anchor_left = 0.371528
+anchor_top = 0.330247
+anchor_right = 0.512153
+anchor_bottom = 0.58642
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_je8qy")
+expand_mode = 1
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [editable path="Ink"]

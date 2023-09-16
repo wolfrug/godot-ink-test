@@ -26,3 +26,7 @@ movie_writer/movie_file="C:/Users/blade/OneDrive/Documents/Godot-Ink Test/Record
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/GodotInk/plugin.cfg")
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

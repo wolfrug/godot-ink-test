@@ -7,26 +7,31 @@ using GodotInk;
 
 public partial class InkWriter : InkStoryData {
 	[Export]
-	private string startKnot = "start";
+	protected string startKnot = "start";
+
+	[Export] protected bool clearText = true;
 
 	[Export]
-	private VBoxContainer containerText;
+	protected VBoxContainer containerText;
 	[Export]
-	private VBoxContainer containerButtons;
+	protected VBoxContainer containerButtons;
 	[Export]
-	private RichTextLabel textLabel;
+	protected RichTextLabel textLabel;
 	[Export]
-	private Button optionButton;
+	protected Button optionButton;
 
-	private bool coroutineRunning = false;
-	private string m_storyFlow = "default";
+	protected bool coroutineRunning = false;
+	protected string m_storyFlow = "default";
+
+	protected ScrollContainer scrollContainer;
 
 	public override void _Ready () {
-		base._Ready();
+		base._Ready ();
+		scrollContainer = (containerText.GetParent() as ScrollContainer);
 		StartStory ();
 	}
 
-	private void StartStory () {
+	public virtual void StartStory () {
 		ClearAllOptions ();
 		ClearAllText ();
 		PlayKnot (startKnot);
@@ -57,32 +62,35 @@ public partial class InkWriter : InkStoryData {
 		}
 	}*/
 
-	void SpawnTextObject (string text) {
+	protected virtual void SpawnTextObject (string text) {
 		RichTextLabel content = (textLabel as Godot.Node).Duplicate () as RichTextLabel;
 		content.Text = text;
 		content.Visible = true;
 		containerText.AddChild (content);
 	}
-	void SpawnOptionObject (string text, InkChoiceLine choice) {
+	protected virtual Button SpawnOptionObject (string text, InkChoiceLine choice) {
 		Button button = (optionButton as Godot.Node).Duplicate () as Button;
 		button.Text = text;
 		button.Visible = true;
 		button.Pressed += delegate {
 			InvokeDialogueEvents (choice.choiceText);
-			ClearAllOptions();
-			ClearAllText();
+			ClearAllOptions ();
+			if (clearText) {
+				ClearAllText ();
+			};
 			PlayChoice (choice.choice);
-			
+
 		};
 		containerButtons.AddChild (button);
+		return button;
 	}
 
-	public void ClearAllText () {
+	public virtual void ClearAllText () {
 		foreach (Node child in containerText.GetChildren ()) {
 			child.QueueFree ();
 		}
 	}
-	public void ClearAllOptions () {
+	public virtual void ClearAllOptions () {
 		foreach (Node child in containerButtons.GetChildren ()) {
 			child.QueueFree ();
 		}
@@ -129,6 +137,9 @@ public partial class InkWriter : InkStoryData {
 			}
 			//m_dialogueShownEvent.Invoke (currentLine);
 		}
+		// Scroll down
+		await Task.Delay(10);
+		scrollContainer.ScrollVertical = (int)scrollContainer.GetVScrollBar().MaxValue;
 		if (gatherChoices != null) {
 			if (gatherChoices.Count > 0) {
 				List < (InkChoiceLine, Button) > allButtons = new List < (InkChoiceLine, Button) > { };
