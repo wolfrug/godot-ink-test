@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d3bs8n7o6xm53"]
+
+[ext_resource type="FontFile" uid="uid://cvfxhryx3jfgx" path="res://Fonts/ShareTechMono-Regular.ttf" id="1_l3fvj"]
+
+[resource]
+default_font = ExtResource("1_l3fvj")

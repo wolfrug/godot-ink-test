@@ -1,0 +1,143 @@
+[gd_scene load_steps=14 format=3 uid="uid://dh2vam1o7tc2g"]
+
+[ext_resource type="Texture2D" uid="uid://d1nw2uy4g87jo" path="res://Graphics/DreamShaper_v7_a_background_scene_in_a_visual_novel_that_is_se_0.jpg" id="2_t3hud"]
+[ext_resource type="Texture2D" uid="uid://c8hjpcqyxqreq" path="res://Graphics/DreamShaper_v7_a_background_to_a_visual_novel_depicting_a_rain_0.jpg" id="3_jgvl4"]
+[ext_resource type="Script" path="res://Scenes/InkWriter.cs" id="4_n4yyq"]
+[ext_resource type="Texture2D" uid="uid://cu1i18hg1vgx" path="res://Graphics/Panel_Dialogue.png" id="4_vy2d5"]
+[ext_resource type="Resource" uid="uid://d0a2xp8tpekr2" path="res://InkFiles/testfile.ink" id="5_xxcv2"]
+[ext_resource type="Script" path="res://Scenes/InkPortrait.cs" id="6_0a6ld"]
+[ext_resource type="Texture2D" uid="uid://ibln2ionguyl" path="res://Graphics/character1.png" id="6_4qd1i"]
+[ext_resource type="Theme" uid="uid://d3bs8n7o6xm53" path="res://Resources/font_theme.tres" id="6_s3fxj"]
+[ext_resource type="Texture2D" uid="uid://cb51vgmqde1av" path="res://Graphics/character2.png" id="7_lmau6"]
+[ext_resource type="StyleBox" uid="uid://b6j1u24xg5xdu" path="res://Resources/button_box.tres" id="7_mcrwg"]
+[ext_resource type="Script" path="res://Scenes/InkListener.cs" id="10_q5x7v"]
+[ext_resource type="AudioStream" uid="uid://0p2ka1jbxxey" path="res://Audio/Punch Deck - Tempest.wav" id="12_wmmig"]
+[ext_resource type="Script" path="res://Scenes/MusicPlayer.cs" id="13_rfdfw"]
+
+[node name="Ink" type="CanvasLayer" node_paths=PackedStringArray("containerText", "containerButtons", "textLabel", "optionButton")]
+script = ExtResource("4_n4yyq")
+containerText = NodePath("Panel/VBoxContainer_Text")
+containerButtons = NodePath("Panel/VBoxContainer_Buttons")
+textLabel = NodePath("OptionRichText")
+optionButton = NodePath("OptionButton")
+m_inkStory = ExtResource("5_xxcv2")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Background" type="TextureRect" parent="Panel" node_paths=PackedStringArray("writer")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.46985
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_jgvl4")
+expand_mode = 3
+stretch_mode = 5
+script = ExtResource("6_0a6ld")
+functionName = "BACKGROUND"
+textures = [ExtResource("2_t3hud"), ExtResource("3_jgvl4")]
+writer = NodePath("../..")
+
+[node name="TextBox" type="TextureRect" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00347222
+anchor_top = 0.79321
+anchor_right = 0.471354
+anchor_bottom = 0.981481
+offset_top = -3.05176e-05
+texture = ExtResource("4_vy2d5")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer_Text" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0208333
+anchor_top = 0.822531
+anchor_right = 0.466146
+anchor_bottom = 0.976852
+offset_left = -7.0
+offset_top = -4.0
+offset_right = -7.0
+offset_bottom = -4.0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer_Buttons" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.262153
+anchor_top = 0.453704
+anchor_right = 0.696181
+anchor_bottom = 0.734568
+offset_left = -7.0
+offset_top = -4.0
+offset_right = -7.0
+offset_bottom = -4.0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="Portrait" type="TextureRect" parent="Panel" node_paths=PackedStringArray("writer")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.726563
+anchor_top = 0.368056
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 17.5
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_4qd1i")
+expand_mode = 5
+script = ExtResource("6_0a6ld")
+textures = [ExtResource("6_4qd1i"), ExtResource("7_lmau6")]
+writer = NodePath("../..")
+metadata/_edit_use_anchors_ = true
+
+[node name="OptionButton" type="Button" parent="."]
+visible = false
+clip_contents = true
+custom_minimum_size = Vector2(500, 0)
+offset_right = 703.0
+offset_bottom = 39.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("6_s3fxj")
+theme_override_styles/normal = ExtResource("7_mcrwg")
+theme_override_styles/hover = ExtResource("7_mcrwg")
+theme_override_styles/pressed = ExtResource("7_mcrwg")
+text = "Text text text text Text text text text v gfdgdfg dg df gdfdfgddfgdfgdfg"
+alignment = 0
+
+[node name="OptionRichText" type="RichTextLabel" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 23.0
+theme = ExtResource("6_s3fxj")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "fdgfdgdgdgfdgfdgfd"
+fit_content = true
+
+[node name="InkListener" type="Node" parent="." node_paths=PackedStringArray("m_listenTarget")]
+script = ExtResource("10_q5x7v")
+m_listenTarget = NodePath("..")
+targetFunction = "PLAYER"
+targetArguments = ["test", "bla2"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("writer")]
+stream = ExtResource("12_wmmig")
+script = ExtResource("13_rfdfw")
+audioClips = [ExtResource("12_wmmig")]
+writer = NodePath("..")

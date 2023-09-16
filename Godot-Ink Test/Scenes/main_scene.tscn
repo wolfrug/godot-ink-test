@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc2an525dnrke"]
+
+[ext_resource type="PackedScene" uid="uid://dh2vam1o7tc2g" path="res://Scenes/inkwriter_window.tscn" id="1_7yr67"]
+[ext_resource type="Script" path="res://Scenes/QuitFunction.cs" id="2_1ktgh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Ink" parent="." instance=ExtResource("1_7yr67")]
+
+[node name="QuitFunction" type="Node" parent="." node_paths=PackedStringArray("m_listenTarget")]
+script = ExtResource("2_1ktgh")
+m_listenTarget = NodePath("../Ink")
+targetFunction = "QUIT"
+
+[editable path="Ink"]
