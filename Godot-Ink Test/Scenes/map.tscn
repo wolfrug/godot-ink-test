@@ -1,0 +1,272 @@
+[gd_scene load_steps=18 format=3 uid="uid://dv0up7y7pbdif"]
+
+[ext_resource type="Texture2D" uid="uid://cg4nfn4slpb5n" path="res://Graphics/ClayMinigame/clay_background.PNG" id="1_q50jw"]
+[ext_resource type="Script" path="res://Scenes/InkPortrait.cs" id="2_o6acq"]
+[ext_resource type="Theme" uid="uid://d3bs8n7o6xm53" path="res://Resources/font_theme.tres" id="3_4i2a6"]
+[ext_resource type="StyleBox" uid="uid://be3kxorldtsgh" path="res://Resources/map_select_box.tres" id="4_8m7rd"]
+[ext_resource type="StyleBox" uid="uid://4m4gq3iv1h3l" path="res://Resources/map_select_box_highlight.tres" id="5_onfxs"]
+[ext_resource type="Texture2D" uid="uid://dwwj8ojhc5t8k" path="res://Graphics/ClayMinigame/new ui_tab_circle.png" id="5_rbl1h"]
+[ext_resource type="StyleBox" uid="uid://d2fcrxdd53p08" path="res://Resources/map_select_box_disabled.tres" id="6_ax66a"]
+[ext_resource type="StyleBox" uid="uid://e1i5027kkqm1" path="res://Resources/energy_box.tres" id="6_j3gf1"]
+[ext_resource type="Script" path="res://Scenes/EnergySlider.cs" id="7_8fxrp"]
+[ext_resource type="Texture2D" uid="uid://spiwsb2dnmdb" path="res://Graphics/ClayMinigame/blackbox.png" id="8_ebkq1"]
+[ext_resource type="Texture2D" uid="uid://yda518p8nemm" path="res://Graphics/ClayMinigame/ui_item_rations2-min.png" id="9_srhv7"]
+[ext_resource type="Script" path="res://Scenes/TextUpdater.cs" id="10_ofnr8"]
+
+[sub_resource type="Animation" id="Animation_puqpv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cuaxj"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vw3b2"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_61lvo"]
+_data = {
+"RESET": SubResource("Animation_puqpv"),
+"fade_in": SubResource("Animation_cuaxj"),
+"fade_out": SubResource("Animation_vw3b2")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_731ao"]
+bg_color = Color(0.282353, 0.588235, 0, 1)
+
+[node name="Map" type="TextureRect" node_paths=PackedStringArray("player")]
+custom_minimum_size = Vector2(1000, 600)
+anchors_preset = -1
+anchor_right = 1.00781
+anchor_bottom = 1.00617
+offset_bottom = -6.10352e-05
+texture = ExtResource("1_q50jw")
+expand_mode = 1
+script = ExtResource("2_o6acq")
+functionName = "MAP"
+textures = [ExtResource("1_q50jw")]
+player = NodePath("AnimationPlayer")
+metadata/_edit_use_anchors_ = true
+
+[node name="TaggedButton" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.553833
+anchor_top = 0.473926
+anchor_right = 0.718346
+anchor_bottom = 0.621166
+theme = ExtResource("3_4i2a6")
+theme_override_styles/normal = ExtResource("4_8m7rd")
+theme_override_styles/hover = ExtResource("5_onfxs")
+theme_override_styles/pressed = ExtResource("5_onfxs")
+theme_override_styles/disabled = ExtResource("6_ax66a")
+theme_override_styles/focus = ExtResource("5_onfxs")
+text = "ruin_1"
+metadata/_edit_use_anchors_ = true
+
+[node name="TaggedButton2" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.119724
+anchor_top = 0.380368
+anchor_right = 0.284238
+anchor_bottom = 0.527607
+offset_top = 1.52588e-05
+offset_right = 3.05176e-05
+theme = ExtResource("3_4i2a6")
+theme_override_styles/normal = ExtResource("4_8m7rd")
+theme_override_styles/hover = ExtResource("5_onfxs")
+theme_override_styles/pressed = ExtResource("5_onfxs")
+theme_override_styles/disabled = ExtResource("6_ax66a")
+theme_override_styles/focus = ExtResource("5_onfxs")
+text = "ruin_2"
+metadata/_edit_use_anchors_ = true
+
+[node name="TaggedButton3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.438415
+anchor_top = 0.67638
+anchor_right = 0.602929
+anchor_bottom = 0.82362
+offset_top = 1.52588e-05
+offset_right = 3.05176e-05
+theme = ExtResource("3_4i2a6")
+theme_override_styles/normal = ExtResource("4_8m7rd")
+theme_override_styles/hover = ExtResource("5_onfxs")
+theme_override_styles/pressed = ExtResource("5_onfxs")
+theme_override_styles/disabled = ExtResource("6_ax66a")
+theme_override_styles/focus = ExtResource("5_onfxs")
+text = "camp"
+metadata/_edit_use_anchors_ = true
+
+[node name="TaggedButton4" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.248924
+anchor_top = 0.769941
+anchor_right = 0.413438
+anchor_bottom = 0.917181
+offset_top = 1.52588e-05
+offset_right = 3.05176e-05
+theme = ExtResource("3_4i2a6")
+theme_override_styles/normal = ExtResource("4_8m7rd")
+theme_override_styles/hover = ExtResource("5_onfxs")
+theme_override_styles/pressed = ExtResource("5_onfxs")
+theme_override_styles/disabled = ExtResource("6_ax66a")
+theme_override_styles/focus = ExtResource("5_onfxs")
+text = "forest_1"
+metadata/_edit_use_anchors_ = true
+
+[node name="TaggedButton5" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.507323
+anchor_top = 0.187117
+anchor_right = 0.671837
+anchor_bottom = 0.334357
+offset_top = 1.52588e-05
+offset_right = 3.05176e-05
+theme = ExtResource("3_4i2a6")
+theme_override_styles/normal = ExtResource("4_8m7rd")
+theme_override_styles/hover = ExtResource("5_onfxs")
+theme_override_styles/pressed = ExtResource("5_onfxs")
+theme_override_styles/disabled = ExtResource("6_ax66a")
+theme_override_styles/focus = ExtResource("5_onfxs")
+text = "forest_2"
+metadata/_edit_use_anchors_ = true
+
+[node name="TaggedButton6" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0594317
+anchor_top = 0.282209
+anchor_right = 0.223946
+anchor_bottom = 0.429449
+offset_top = 1.52588e-05
+offset_right = 3.05176e-05
+theme = ExtResource("3_4i2a6")
+theme_override_styles/normal = ExtResource("4_8m7rd")
+theme_override_styles/hover = ExtResource("5_onfxs")
+theme_override_styles/pressed = ExtResource("5_onfxs")
+theme_override_styles/disabled = ExtResource("6_ax66a")
+theme_override_styles/focus = ExtResource("5_onfxs")
+text = "ruins_3"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_61lvo")
+}
+
+[node name="EnergySlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.341947
+anchor_top = 0.00153374
+anchor_right = 0.550388
+anchor_bottom = 0.0552147
+offset_right = 726.0
+offset_bottom = 105.0
+grow_horizontal = 2
+scale = Vector2(0.25, 0.25)
+theme_override_constants/center_grabber = 50
+theme_override_icons/grabber = ExtResource("5_rbl1h")
+theme_override_icons/grabber_disabled = ExtResource("5_rbl1h")
+theme_override_styles/slider = ExtResource("6_j3gf1")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_731ao")
+max_value = 10.0
+value = 10.0
+rounded = true
+editable = false
+scrollable = false
+tick_count = 10
+ticks_on_borders = true
+script = ExtResource("7_8fxrp")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EnergySlider"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.371901
+anchor_top = 0.828571
+anchor_right = 1.02066
+anchor_bottom = 1.51429
+offset_right = 6.10352e-05
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_4i2a6")
+theme_override_font_sizes/normal_font_size = 81
+text = "Energy"
+metadata/_edit_use_anchors_ = true
+
+[node name="DaysLeft" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.411765)
+layout_mode = 0
+offset_right = 188.0
+offset_bottom = 56.0
+texture = ExtResource("8_ebkq1")
+expand_mode = 1
+
+[node name="FoodLeft" type="HBoxContainer" parent="DaysLeft"]
+layout_mode = 0
+offset_right = 258.0
+offset_bottom = 56.0
+
+[node name="Icon" type="TextureRect" parent="DaysLeft/FoodLeft"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("9_srhv7")
+expand_mode = 1
+
+[node name="Description" type="RichTextLabel" parent="DaysLeft/FoodLeft"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme = ExtResource("3_4i2a6")
+theme_override_font_sizes/normal_font_size = 22
+text = "Days Of Rations:"
+fit_content = true
+
+[node name="Amount" type="RichTextLabel" parent="DaysLeft/FoodLeft"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("3_4i2a6")
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "5"
+fit_content = true
+script = ExtResource("10_ofnr8")

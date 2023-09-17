@@ -1,20 +1,20 @@
-[gd_scene load_steps=30 format=3 uid="uid://dh2vam1o7tc2g"]
+[gd_scene load_steps=30 format=3 uid="uid://dygh54wbqald5"]
 
-[ext_resource type="Resource" uid="uid://cjl64b4x31e7c" path="res://InkFiles/quantum_clay_minigame.ink" id="2_axqtc"]
-[ext_resource type="Texture2D" uid="uid://dke71nqsiros0" path="res://Graphics/ClayMinigame/scene_camp.png" id="3_5ow0x"]
-[ext_resource type="Texture2D" uid="uid://spiwsb2dnmdb" path="res://Graphics/ClayMinigame/blackbox.png" id="3_ctehx"]
-[ext_resource type="Script" path="res://Scenes/InkWriter.cs" id="4_n4yyq"]
-[ext_resource type="Texture2D" uid="uid://cof1k0i1y367y" path="res://Graphics/ClayMinigame/scene_city post apo.png" id="5_6p847"]
-[ext_resource type="Script" path="res://Scenes/InkPortrait.cs" id="6_0a6ld"]
-[ext_resource type="Texture2D" uid="uid://v7mnp6dnvsv2" path="res://Graphics/ClayMinigame/scene_city pre apo.png" id="6_kthfm"]
-[ext_resource type="Theme" uid="uid://d3bs8n7o6xm53" path="res://Resources/font_theme.tres" id="6_s3fxj"]
-[ext_resource type="StyleBox" uid="uid://b6j1u24xg5xdu" path="res://Resources/button_box.tres" id="7_mcrwg"]
-[ext_resource type="Texture2D" uid="uid://dtg6qa5qna5o4" path="res://Graphics/ClayMinigame/new ui_inventory_open.png" id="7_omghx"]
-[ext_resource type="Texture2D" uid="uid://duocoq5p4isam" path="res://Graphics/ClayMinigame/portrait_clayworker_profile.png" id="8_b5i28"]
-[ext_resource type="Texture2D" uid="uid://c8vnw65bv1vth" path="res://Graphics/ClayMinigame/portrait_storyteller_profile.png" id="9_r7alg"]
-[ext_resource type="Script" path="res://Scenes/InkListener.cs" id="10_q5x7v"]
-[ext_resource type="PackedScene" uid="uid://cxywm5e0aoysj" path="res://Scenes/music_player.tscn" id="13_0y36n"]
-[ext_resource type="AudioStream" uid="uid://dhi06fcjvqpkx" path="res://Audio/Clay theme 16.I.2021.wav" id="14_kbbku"]
+[ext_resource type="Script" path="res://Scenes/CustomInkButtonController.cs" id="1_xsk5r"]
+[ext_resource type="Resource" uid="uid://cjl64b4x31e7c" path="res://InkFiles/quantum_clay_minigame.ink" id="2_ydgo2"]
+[ext_resource type="Texture2D" uid="uid://spiwsb2dnmdb" path="res://Graphics/ClayMinigame/blackbox.png" id="3_28ud6"]
+[ext_resource type="Script" path="res://Scenes/InkPortrait.cs" id="4_imgyn"]
+[ext_resource type="Texture2D" uid="uid://cof1k0i1y367y" path="res://Graphics/ClayMinigame/scene_city post apo.png" id="5_ub6r2"]
+[ext_resource type="Texture2D" uid="uid://dke71nqsiros0" path="res://Graphics/ClayMinigame/scene_camp.png" id="6_ov78u"]
+[ext_resource type="Texture2D" uid="uid://tflq483x5top" path="res://Graphics/ClayMinigame/scene_forest with machines.png" id="7_5b587"]
+[ext_resource type="Texture2D" uid="uid://dtg6qa5qna5o4" path="res://Graphics/ClayMinigame/new ui_inventory_open.png" id="8_6g155"]
+[ext_resource type="Texture2D" uid="uid://duocoq5p4isam" path="res://Graphics/ClayMinigame/portrait_clayworker_profile.png" id="9_fnjb1"]
+[ext_resource type="Texture2D" uid="uid://c8vnw65bv1vth" path="res://Graphics/ClayMinigame/portrait_storyteller_profile.png" id="10_gpisp"]
+[ext_resource type="Theme" uid="uid://d3bs8n7o6xm53" path="res://Resources/font_theme.tres" id="11_dv7j7"]
+[ext_resource type="StyleBox" uid="uid://b6j1u24xg5xdu" path="res://Resources/button_box.tres" id="12_wja55"]
+[ext_resource type="Script" path="res://Scenes/InkListener.cs" id="13_nan2d"]
+[ext_resource type="PackedScene" uid="uid://cxywm5e0aoysj" path="res://Scenes/music_player.tscn" id="14_xsglu"]
+[ext_resource type="AudioStream" uid="uid://dhi06fcjvqpkx" path="res://Audio/Clay theme 16.I.2021.wav" id="15_yqsrn"]
 
 [sub_resource type="Animation" id="Animation_6f23t"]
 length = 0.001
@@ -194,14 +194,14 @@ _data = {
 "fade_in_text": SubResource("Animation_nfsvl")
 }
 
-[node name="Ink" type="CanvasLayer" node_paths=PackedStringArray("containerText", "containerButtons", "textLabel", "optionButton")]
-script = ExtResource("4_n4yyq")
-clearText = false
+[node name="Ink_CustomButtons" type="CanvasLayer" node_paths=PackedStringArray("taggedButtons", "containerText", "containerButtons", "textLabel", "optionButton")]
+script = ExtResource("1_xsk5r")
+taggedButtons = [null, null, null]
 containerText = NodePath("Panel/TextBoxBackground/TextBox/ScrollContainer/VBoxContainer_Text")
 containerButtons = NodePath("Panel/VBoxContainer_Buttons")
 textLabel = NodePath("OptionRichText")
 optionButton = NodePath("OptionButton")
-m_inkStory = ExtResource("2_axqtc")
+m_inkStory = ExtResource("2_ydgo2")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -220,11 +220,11 @@ anchor_bottom = 1.0
 offset_right = 3.46985
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_5ow0x")
+texture = ExtResource("3_28ud6")
 expand_mode = 3
-script = ExtResource("6_0a6ld")
+script = ExtResource("4_imgyn")
 functionName = "BACKGROUND"
-textures = [ExtResource("5_6p847"), ExtResource("6_kthfm")]
+textures = [ExtResource("5_ub6r2"), ExtResource("6_ov78u"), ExtResource("3_28ud6"), ExtResource("7_5b587")]
 writer = NodePath("../..")
 player = NodePath("AnimationPlayer")
 
@@ -243,7 +243,7 @@ anchor_right = 1.00174
 anchor_bottom = 0.675926
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_ctehx")
+texture = ExtResource("3_28ud6")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -256,7 +256,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_omghx")
+texture = ExtResource("8_6g155")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
 
@@ -285,9 +285,9 @@ metadata/_edit_use_anchors_ = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.697917
+anchor_left = 0.720486
 anchor_top = 0.694444
-anchor_right = 0.983507
+anchor_right = 0.997396
 anchor_bottom = 0.992284
 offset_left = -7.0
 offset_top = -4.0
@@ -299,17 +299,16 @@ metadata/_edit_use_anchors_ = true
 [node name="Portrait" type="TextureRect" parent="Panel" node_paths=PackedStringArray("writer", "player")]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.499132
-anchor_top = 0.64429
-anchor_right = 0.680556
-anchor_bottom = 0.993827
-offset_top = 17.5
+anchor_left = 0.530382
+anchor_top = 0.0154321
+anchor_right = 0.711806
+anchor_bottom = 0.337963
 grow_horizontal = 0
 grow_vertical = 0
-texture = ExtResource("8_b5i28")
+texture = ExtResource("9_fnjb1")
 expand_mode = 3
-script = ExtResource("6_0a6ld")
-textures = [ExtResource("8_b5i28"), ExtResource("9_r7alg")]
+script = ExtResource("4_imgyn")
+textures = [ExtResource("9_fnjb1"), ExtResource("10_gpisp")]
 writer = NodePath("../..")
 player = NodePath("AnimationPlayer")
 metadata/_edit_use_anchors_ = true
@@ -329,10 +328,10 @@ offset_right = 1136.0
 offset_bottom = 492.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme = ExtResource("6_s3fxj")
-theme_override_styles/normal = ExtResource("7_mcrwg")
-theme_override_styles/hover = ExtResource("7_mcrwg")
-theme_override_styles/pressed = ExtResource("7_mcrwg")
+theme = ExtResource("11_dv7j7")
+theme_override_styles/normal = ExtResource("12_wja55")
+theme_override_styles/hover = ExtResource("12_wja55")
+theme_override_styles/pressed = ExtResource("12_wja55")
 text = "Text text text text"
 alignment = 0
 
@@ -346,8 +345,9 @@ libraries = {
 visible = false
 offset_right = 1152.0
 offset_bottom = 23.0
-theme = ExtResource("6_s3fxj")
+theme = ExtResource("11_dv7j7")
 theme_override_colors/default_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
 text = "fdgfdgdgdgfdgfdgfd"
 fit_content = true
 
@@ -357,12 +357,12 @@ libraries = {
 }
 
 [node name="InkListener" type="Node" parent="." node_paths=PackedStringArray("m_listenTarget")]
-script = ExtResource("10_q5x7v")
+script = ExtResource("13_nan2d")
 m_listenTarget = NodePath("..")
 targetFunction = "PLAYER"
 targetArguments = ["test", "bla2"]
 
-[node name="MusicPlayer" parent="." node_paths=PackedStringArray("writer") instance=ExtResource("13_0y36n")]
-stream = ExtResource("14_kbbku")
-audioClips = [ExtResource("14_kbbku")]
+[node name="MusicPlayer" parent="." node_paths=PackedStringArray("writer") instance=ExtResource("14_xsglu")]
+stream = ExtResource("15_yqsrn")
+audioClips = [ExtResource("15_yqsrn")]
 writer = NodePath("..")

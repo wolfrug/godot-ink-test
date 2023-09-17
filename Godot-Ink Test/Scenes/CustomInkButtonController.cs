@@ -9,28 +9,31 @@ public partial class CustomInkButtonController : InkWriter {
 	Godot.Collections.Array<Button> taggedButtons = new Godot.Collections.Array<Button> { };
 
 	protected Dictionary<string, Button> buttonDictionary = new Dictionary<string, Button> { };
-	private List<Button> allButtons = new List<Button>{};
+	private List<Button> allButtons = new List<Button> { };
 
 	public override void _Ready () {
 		base._Ready ();
-		AddSearchableFunction("BUTTONTAG");
+		AddSearchableFunction ("BUTTONTAG");
 		foreach (Button btn in taggedButtons) {
 			buttonDictionary.Add (btn.Text, btn);
 			btn.Visible = false;
-			GD.Print("Added button " + btn + " with tag " + btn.Text + " to dictionary!");
+			GD.Print ("Added button " + btn + " with tag " + btn.Text + " to dictionary!");
 		}
 	}
 
 	protected override Button SpawnOptionObject (string text, InkChoiceLine choice) {
 
 		Button outButton = null;
-		if (choice.choiceText.HasVariable("BUTTONTAG")) {
-			buttonDictionary.TryGetValue (choice.choiceText.GetVariable("BUTTONTAG").VariableArguments[0], out outButton);
+		if (choice.choiceText.HasVariable ("BUTTONTAG")) {
+			buttonDictionary.TryGetValue (choice.choiceText.GetVariable ("BUTTONTAG").VariableArguments[0], out outButton);
 			if (outButton != null) {
-				GD.Print("Found button " + outButton + " with tag " + choice.choiceText.GetVariable("BUTTONTAG").VariableArguments[0]);
+				GD.Print ("Found button " + outButton + " with tag " + choice.choiceText.GetVariable ("BUTTONTAG").VariableArguments[0]);
 				Button foundButton = (outButton as Godot.Node).Duplicate () as Button;
 				foundButton.Text = text;
 				foundButton.Visible = true;
+				if (choice.choiceText.HasVariableWithArgument ("INTERACTABLE", "false")) {
+					foundButton.Disabled = true;
+				}
 				foundButton.Pressed += delegate {
 					InvokeDialogueEvents (choice.choiceText);
 					ClearAllOptions ();
@@ -38,9 +41,9 @@ public partial class CustomInkButtonController : InkWriter {
 						ClearAllText ();
 					};
 					PlayChoice (choice.choice);
-					GD.Print("Clicked special tagged button " + outButton);
+					GD.Print ("Clicked special tagged button " + outButton);
 				};
-				outButton.GetParent().AddChild(foundButton);
+				outButton.GetParent ().AddChild (foundButton);
 				return foundButton;
 			}
 		}
@@ -48,6 +51,9 @@ public partial class CustomInkButtonController : InkWriter {
 		Button button = (optionButton as Godot.Node).Duplicate () as Button;
 		button.Text = text;
 		button.Visible = true;
+		if (choice.choiceText.HasVariableWithArgument ("INTERACTABLE", "false")) {
+			button.Disabled = true;
+		}
 		button.Pressed += delegate {
 			InvokeDialogueEvents (choice.choiceText);
 			ClearAllOptions ();
@@ -61,10 +67,10 @@ public partial class CustomInkButtonController : InkWriter {
 	}
 	public override void ClearAllOptions () {
 		//base.ClearAllOptions();
-		foreach (Button btn in allButtons){
-			btn.QueueFree();
+		foreach (Button btn in allButtons) {
+			btn.QueueFree ();
 		}
-		allButtons.Clear();
+		allButtons.Clear ();
 	}
 	public override async void DisplayText (InkDialogueLine[] dialogueLines, List<InkChoiceLine> gatherChoices) {
 		for (int i = 0; i < dialogueLines.Length; i++) {
@@ -82,7 +88,7 @@ public partial class CustomInkButtonController : InkWriter {
 			if (gatherChoices.Count > 0) {
 				foreach (InkChoiceLine choice in gatherChoices) {
 					Button spawnedButton = SpawnOptionObject (choice.choiceText.displayText, choice);
-					allButtons.Add(spawnedButton);
+					allButtons.Add (spawnedButton);
 				}
 			} else { // we only invoke the writer finished event if there really are no more choices
 				//m_writerFinishedEvent.Invoke (this);

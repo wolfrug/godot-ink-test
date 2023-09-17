@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://be0b0lveanveb"]
+
+[ext_resource type="Script" path="res://Scenes/Item.cs" id="2_m0o64"]
+[ext_resource type="Theme" uid="uid://d3bs8n7o6xm53" path="res://Resources/font_theme.tres" id="3_e7xk0"]
+[ext_resource type="Texture2D" uid="uid://ce55uha8nxu7a" path="res://Graphics/ClayMinigame/ui_blakcmirror_broken.png" id="3_uciqu"]
+
+[node name="ItemFound" type="Container" node_paths=PackedStringArray("itemTextLabel", "itemIconRect")]
+anchors_preset = -1
+anchor_left = 0.371528
+anchor_top = 0.330247
+anchor_right = 0.503472
+anchor_bottom = 0.550926
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_m0o64")
+itemId = "testItem"
+itemTextLabel = NodePath("ItemFoundIcon/ItemFoundText")
+itemIconRect = NodePath("ItemFoundIcon")
+itemIcon = ExtResource("3_uciqu")
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemFoundIcon" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("3_uciqu")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ItemFoundText" type="RichTextLabel" parent="ItemFoundIcon"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.606667
+anchor_top = 1.01333
+anchor_right = 1.46667
+anchor_bottom = 1.34667
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("3_e7xk0")
+theme_override_font_sizes/normal_font_size = 21
+bbcode_enabled = true
+text = "[center]Found a Black Mirror![/center]"
+metadata/_edit_use_anchors_ = true

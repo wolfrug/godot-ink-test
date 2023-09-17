@@ -16,7 +16,7 @@ public partial class AnimationPlayer : Godot.AnimationPlayer
 	}
 
 	void OnFunctionEvent (InkDialogueLine line, InkTextVariable variable) {
-		GD.Print ("Got an event! For variable " + variable.variableName);
+		//GD.Print ("Got an event! For variable " + variable.variableName);
 		if (variable.variableName == functionName) {
 			if (variable.VariableArguments.Count > 0) {
 					Play(variable.VariableArguments[0]);

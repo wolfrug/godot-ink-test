@@ -122,14 +122,14 @@ public partial class InkListener : Node {
 	}
 
 	public virtual void OnFunctionEvent (InkDialogueLine dialogueLine, InkTextVariable variable) {
-		GD.Print ("Received function event: " + variable.variableName + "(" + string.Join ("\n", variable.VariableArguments) + ")");
+		//GD.Print ("Received function event: " + variable.variableName + "(" + string.Join ("\n", variable.VariableArguments) + ")");
 		List<InkFunctionEvent> functionEvents = new List<InkFunctionEvent> { };
 		m_inkFunctionDict.TryGetValue (variable.variableName, out functionEvents);
 		if (functionEvents != null) {
 			if (functionEvents.Count > 0) {
 				foreach (InkFunctionEvent evt in functionEvents) {
 					if (evt.ArgumentMatch (variable.VariableArguments)) {
-						GD.Print ("Invoking function event " + variable.variableName + "(" + string.Join ("\n", variable.VariableArguments) + ")");
+						//GD.Print ("Invoking function event " + variable.variableName + "(" + string.Join ("\n", variable.VariableArguments) + ")");
 						evt.onEvent.Invoke (dialogueLine, variable);
 						FunctionEvent(dialogueLine, variable);
 					}
@@ -138,10 +138,10 @@ public partial class InkListener : Node {
 		}
 	}
 	public virtual void OnTagEvent (InkDialogueLine dialogueLine, string tag) {
-		GD.Print ("Received tag event for tag " + tag);
+		//GD.Print ("Received tag event for tag " + tag);
 		foreach (InkTagEvent evt in m_tagEvents) {
 			if (evt.targetTag == tag) {
-				GD.Print ("Invoking tag event " + tag);
+				//GD.Print ("Invoking tag event " + tag);
 				evt.onEvent.Invoke (dialogueLine, tag);
 				TagEvent(dialogueLine, tag);
 			}

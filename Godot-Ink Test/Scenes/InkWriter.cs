@@ -26,8 +26,9 @@ public partial class InkWriter : InkStoryData {
 	protected ScrollContainer scrollContainer;
 
 	public override void _Ready () {
-		base._Ready ();
 		scrollContainer = (containerText.GetParent() as ScrollContainer);
+		AddSearchableFunction("INTERACTABLE");
+		base._Ready ();
 		StartStory ();
 	}
 
@@ -72,6 +73,9 @@ public partial class InkWriter : InkStoryData {
 		Button button = (optionButton as Godot.Node).Duplicate () as Button;
 		button.Text = text;
 		button.Visible = true;
+		if (choice.choiceText.HasVariableWithArgument("INTERACTABLE", "false")){
+			button.Disabled = true;
+		}
 		button.Pressed += delegate {
 			InvokeDialogueEvents (choice.choiceText);
 			ClearAllOptions ();

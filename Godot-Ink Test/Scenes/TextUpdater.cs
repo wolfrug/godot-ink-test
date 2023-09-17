@@ -2,14 +2,13 @@ using System;
 using Godot;
 using GodotInk;
 
-public partial class MusicPlayer : AudioStreamPlayer {
-
+public partial class TextUpdater : RichTextLabel
+{
 	[Export]
-	string functionName = "PLAY_MUSIC";
-	[Export]
-	Godot.Collections.Array<AudioStream> audioClips = new Godot.Collections.Array<AudioStream> { };
+	string functionName = "TEXT_AMOUNT";
 	[Export]
 	InkWriter writer;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready () {
 		writer.AddSearchableFunction (functionName);
@@ -20,15 +19,7 @@ public partial class MusicPlayer : AudioStreamPlayer {
 		//GD.Print ("Got an event! For variable " + variable.variableName);
 		if (variable.variableName == functionName) {
 			if (variable.VariableArguments.Count > 0) {
-				int index = int.Parse (variable.VariableArguments[0]);
-				if (index >= 0 && index < audioClips.Count) {
-					if (Stream != audioClips[index]) {
-						Stream = audioClips[index];
-					};
-					if (!Playing) {
-						Play (0);
-					}
-				}
+				Text = variable.VariableArguments[0];
 			}
 		}
 	}
